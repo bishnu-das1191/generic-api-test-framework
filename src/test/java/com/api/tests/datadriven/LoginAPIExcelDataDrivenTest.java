@@ -9,19 +9,19 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class LoginAPIDataDrivenTest {
+public class LoginAPIExcelDataDrivenTest {
     // Rest Assured test code for login API would go here
 
-    @Test(description = "Verify Login API is working for user FD",
+    @Test(description = "Verify Login API is working for multiple users - Data Driven with Excel File",
             groups = {"api","regression","datadriven"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
-            dataProvider = "loginAPIDataProvider")
-    public void testLoginAPI(UserBean userbean) {
+            dataProvider = "LoginAPIExcelDataProvider")
+    public void testLoginAPIwithExcel(UserBean userBean) {
 
 
         //setup
         given()
-                .spec(requestSpec(userbean))
+                .spec(requestSpec(userBean))
                 // action
                 .when()
                     .post("login")

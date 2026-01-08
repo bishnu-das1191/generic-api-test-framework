@@ -36,7 +36,6 @@ public class LoginAPITest {
                 .spec(responseSpec_OK())
                 //validation
                 .and()
-                //.body("message", equalTo("Success"))
                 .body("token", notNullValue())
                 .and()
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
