@@ -36,4 +36,14 @@ public class JsonReaderUtil {
 
        return list.iterator();
     }
+
+    // sample data provider method with hardcoded values
+    // @DataProvider(name = "loginDataProvider" )
+    // public Object[][] loginDataProvider() {
+    //     return new Object[][] {
+    //             {"user1", "pass1"},
+    //             {"user2", "pass2"},
+    //             {"user3", "pass3"}
+    //     };
+
 }

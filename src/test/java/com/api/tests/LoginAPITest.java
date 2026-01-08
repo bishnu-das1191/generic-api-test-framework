@@ -25,7 +25,6 @@ public class LoginAPITest {
     @Test(description = "Verify Login API is working for admin", groups = {"api","regression","smoke"})
     public void testLoginAPI() {
 
-
         //setup
         given()
                 .spec(requestSpec(userCredentials))
