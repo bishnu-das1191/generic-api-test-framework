@@ -4,6 +4,8 @@
     <test name="Regression Test">
         <classes>
             <class name="com.api.tests.LoginAPITest"/>
+            <class name="com.api.tests.CreateBookingAPITest"/>
+            <class name="com.api.tests.CreateBookingAPIFakeDataTest"/>
         </classes>
     </test>
 </suite>

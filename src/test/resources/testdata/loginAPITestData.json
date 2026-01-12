@@ -1,15 +1,15 @@
 [
     {
-        "username": "iamfd",
-        "password": "password"
+        "username": "admin",
+        "password": "password123"
     },
     {
-        "username": "iamsup",
-        "password": "password"
+        "username": "admin",
+        "password": "password123"
     },
     {
-        "username": "iameng",
-        "password": "password"
+        "username": "admin",
+        "password": "password123"
     }
 ]
 
