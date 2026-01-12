@@ -13,6 +13,16 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class LoginAPITest {
 
+    // Integrate Allure Report generation step by step in framework
+    // 1. Add Allure dependencies in pom.xml
+    // 2. Add Allure annotations in test classes and methods
+    // 3. Configure TestNG listeners for Allure in testng.xml
+    // 4. Generate Allure report after test execution using Maven commands
+    // - using command like : mvn clean test
+    // - after running the tests, generate the report using:
+    // - allure serve target/site/allure-maven-plugin
+    // 5. View Allure report using Allure command line tool
+
     // Rest Assured test code for login API would go here
     private UserCredentials userCredentials;
 
