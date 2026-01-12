@@ -10,6 +10,14 @@ import java.util.List;
 
 public class JsonReaderUtil {
 
+    // In order to perform Data Driven Testing in this framework,
+    // we need to use 5 components from our framework:
+    // 1. Test Data component (JSON file with test data)
+    // 2. JsonReaderUtil class to read test data from JSON file
+    // 3. DataProviderUtils method to fetch the data from JsonReaderUtil
+    // 4. POJO class to map the JSON data to Java Object
+    // 5. Data Driven Test class.
+
     public static <T> Iterator<T> loadJSON(String fileName, Class<T[]> clazz) {
 
         //loginAPITestData.json ----> src/test/resources/demodata/loginAPITestData.json
