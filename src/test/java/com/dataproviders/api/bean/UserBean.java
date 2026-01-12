@@ -1,6 +1,5 @@
 package com.dataproviders.api.bean;
 
-//import com.opencsv.bean.CsvBindByName;
 import com.poiji.annotation.ExcelCellName;
 
 public class UserBean {
@@ -11,6 +10,8 @@ public class UserBean {
     //@ExcelCellName("username") is from Poiji library to map excel column to field
     //moreover Poiji is case-sensitive for column names
     //moreover Poiji requires default constructor, getters and setters to work properly
+    // do we require UserCredentials or UserBean to map excel data?
+    // - we require UserBean because Poiji needs bean class with getters and setters
 
     //@CsvBindByName(column = "username")
     @ExcelCellName("username")

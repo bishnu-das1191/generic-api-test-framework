@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,12 +24,15 @@ public class JsonReaderUtil {
                 .getContextClassLoader()
                 .getResourceAsStream(fileName);
 
+        // ObjectMapper is used to convert JSON to Java Object and vice versa
         ObjectMapper objMapper = new ObjectMapper();
         T[] classArray;
         List<T> list = null;
         try {
             classArray = objMapper
-                    .readValue(inputStream, clazz);
+                    .readValue(inputStream, clazz); // readValue() method converts JSON to Java Object
+            System.out.println("json data in array form: ");
+            System.out.println(Arrays.toString(classArray));
             list = List.of(classArray);
         } catch (IOException e) {
             e.printStackTrace();

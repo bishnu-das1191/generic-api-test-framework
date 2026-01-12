@@ -3,6 +3,7 @@ package com.dataproviders;
 import com.api.request.model.UserCredentials;
 import com.api.utils.ExcelReaderUtil;
 import com.api.utils.JsonReaderUtil;
+import com.dataproviders.api.bean.UserBean;
 import org.testng.annotations.DataProvider;
 import java.util.Iterator;
 
@@ -21,8 +22,8 @@ public class DataProviderUtils {
 
 
     @DataProvider(name = "LoginAPIExcelDataProvider", parallel = true)
-    public static Iterator<UserCredentials> loginAPIExcelDataProvider() {
-        return ExcelReaderUtil.loadTestData("testdata/PhoenixTestData.xlsx","LoginTestData", UserCredentials.class);
+    public static Iterator<UserBean> loginAPIExcelDataProvider() {
+        return ExcelReaderUtil.loadTestData("testdata/PhoenixTestData.xlsx","LoginTestData", UserBean.class);
     }
 
 }

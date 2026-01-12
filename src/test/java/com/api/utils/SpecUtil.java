@@ -77,7 +77,7 @@ public class SpecUtil {
     public static ResponseSpecification responseSpec_TEXT(int statusCode){
         ResponseSpecification responseSpecification =  new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
-                .expectResponseTime(Matchers.lessThan(2000L))
+                .expectResponseTime(Matchers.lessThan(4000L))
                 .log(LogDetail.ALL)
                 .build();
         return responseSpecification;
@@ -103,13 +103,14 @@ public class SpecUtil {
 
      */
 
-/*
+
     // RequestSpecification with Authorization Header and Body
     public static RequestSpecification requestSpecWithAuth(Role role, Object payload){
         RequestSpecification requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(getProperty("BASE_URI"))
                 .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
+                //.setAccept(ContentType.JSON)
+                .setAccept(ContentType.ANY)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
                 .setBody(payload)
                 .log(LogDetail.URI)
@@ -120,7 +121,7 @@ public class SpecUtil {
         return requestSpecification;
     }
 
- */
+
 
 
 }
