@@ -24,13 +24,16 @@ public class DemoRunner {
         String date = faker.date().future(20,TimeUnit.DAYS).toInstant().toString().substring(0,10);
         System.out.println(date);*/
 
-       /* String checkin = Instant.now().minus(23, ChronoUnit.DAYS).toString().substring(0,10);
-        System.out.println(checkin);
-
+       String checkin = Instant.now().minus(0, ChronoUnit.DAYS).toString().substring(0,10);
+        //System.out.println(checkin);
+/*
         String checkout = Instant.now().minus(0, ChronoUnit.DAYS).toString().substring(0,10);
         System.out.println(checkout);*/
 
-        boolean depositpaid = faker.bool().bool();
-        System.out.println(depositpaid);
+//        boolean depositpaid = faker.bool().bool();
+//        System.out.println(depositpaid);
+
+        Faker faker = new Faker(new Locale("en-IND"));
+        System.out.println(faker.date().future(10, TimeUnit.DAYS).toInstant().toString().substring(0,10));
     }
 }
