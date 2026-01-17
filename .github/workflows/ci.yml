@@ -38,6 +38,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Creating the .env file
+      run: |
+            echo "ADMIN_API_USERNAME=${{ secrets.ADMIN_API_USERNAME }}" >> .env
+            echo "ADMIN_API_PASSWORD=${{ secrets.ADMIN_API_PASSWORD }}" >> .env
+            echo "USER_API_USERNAME=${{ secrets.USER_API_USERNAME }}" >> .env
+            echo "USER_API_PASSWORD=${{ secrets.USER_API_PASSWORD }}" >> .env
+            echo "GUEST_API_USERNAME=${{ secrets.GUEST_API_USERNAME }}" >> .env
+            echo "GUEST_API_PASSWORD=${{ secrets.GUEST_API_PASSWORD }}" >> .env
+        
+
     - name: Default Values for Execution
       id: default
       run: |
