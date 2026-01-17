@@ -1,6 +1,7 @@
 package com.api.tests;
 
 import com.api.request.model.UserCredentials;
+import static com.api.utils.EnvUtil.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,7 +29,10 @@ public class LoginAPITest {
 
     @BeforeMethod(description = "Setup User Credentials Payload for Login API Request")
     public void setup(){
-        userCredentials = new UserCredentials("admin", "password123");
+        userCredentials = new UserCredentials(
+                getEnvValue("ADMIN_API_USERNAME"),
+                getEnvValue("ADMIN_API_PASSWORD")
+        );
     }
 
 

@@ -6,8 +6,8 @@ import com.api.request.model.UserCredentials;
 import io.restassured.http.ContentType;
 
 import static com.api.constant.Role.*;
+import static com.api.utils.EnvUtil.getEnvValue;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class AuthTokenProvider {
@@ -24,11 +24,17 @@ public class AuthTokenProvider {
 
         UserCredentials userCredentials = null;
         if(role == ADMIN){
-            userCredentials = new UserCredentials("admin", "password123");
+            userCredentials = new UserCredentials(
+                    getEnvValue("ADMIN_API_USERNAME"),
+                    getEnvValue("ADMIN_API_PASSWORD"));
         } else if(role == USER){
-            userCredentials = new UserCredentials("iamuser", "password");
+            userCredentials = new UserCredentials(
+                    getEnvValue("USER_API_USERNAME"),
+                    getEnvValue("USER_API_PASSWORD"));
         } else if(role == GUEST){
-            userCredentials = new UserCredentials("iamguest", "password");
+            userCredentials = new UserCredentials(
+                    getEnvValue("GUEST_API_USERNAME"),
+                    getEnvValue("GUEST_API_PASSWORD"));
         }
         return given()
                 .baseUri(ConfigManager.getProperty("BASE_URI"))
