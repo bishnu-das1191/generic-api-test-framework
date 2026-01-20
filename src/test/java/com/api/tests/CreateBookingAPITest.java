@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
 import com.api.request.model.UserCredentials;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,6 +16,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(com.listeners.APITestListener.class)
+@Epic("User Management Epic")
+@Feature("Create Booking API Feature")
 public class CreateBookingAPITest {
 
     // Rest Assured test code for login API would go here
@@ -35,6 +38,9 @@ public class CreateBookingAPITest {
     }
 
 
+    @Story("Create Booking Story")
+    @Description("Test to verify that Create Booking API is working and response schema is valid.")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify Create Booking API is working",
             groups = {"api","regression","smoke"},
             retryAnalyzer = com.listeners.APIRetryAnalyzer.class)

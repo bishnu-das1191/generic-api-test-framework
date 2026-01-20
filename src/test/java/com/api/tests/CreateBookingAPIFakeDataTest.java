@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
 import com.api.utils.FakerDataGenerator;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,6 +16,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 
 @Listeners(com.listeners.APITestListener.class)
+@Epic("User Management Epic")
+@Feature("Create Booking API Feature")
 public class CreateBookingAPIFakeDataTest {
 
     // Rest Assured test code for login API would go here
@@ -28,6 +31,9 @@ public class CreateBookingAPIFakeDataTest {
     }
 
 
+    @Story("Create Booking Story with Faker Data")
+    @Description("Test to verify that Create Booking API is working with Faker Data and response schema is valid.")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify Create Booking API is working with Faker Data",
             groups = {"api","regression","smoke"},
             retryAnalyzer = com.listeners.APIRetryAnalyzer.class)

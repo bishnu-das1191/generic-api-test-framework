@@ -2,6 +2,8 @@ package com.api.tests;
 
 import com.api.request.model.UserCredentials;
 import static com.api.utils.EnvUtil.*;
+
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -14,6 +16,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(com.listeners.APITestListener.class)
+@Epic("User Management Epic")
+@Feature("Authentication/Login API Feature")
 public class LoginAPITest {
 
     // Integrate Allure Report generation step by step in framework
@@ -38,6 +42,9 @@ public class LoginAPITest {
     }
 
 
+    @Story("Valid User Login Story")
+    @Description("Test to verify that a valid user can log in successfully and receive a token.")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(
             description = "Verify Login API is working for admin",
             groups = {"api","regression","smoke"},
