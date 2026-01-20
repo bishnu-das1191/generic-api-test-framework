@@ -1,5 +1,8 @@
 package com.api.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +19,8 @@ public class ConfigManager {
     // 6. Objects creation is restricted for this class because of private constructor
 
     // read configuration settings from a file or environment variables
+
+    private static final Logger LOGGER = LogManager.getLogger(ConfigManager.class);
     private static String path = "config/config.properties";
     private static String env;
     private static Properties prop = new Properties();
@@ -27,12 +32,15 @@ public class ConfigManager {
     // Operation of loading properties file in the memory
     //because its static block it will be executed only once when the class is loaded
     static {
-
+        LOGGER.info("Reading env variable for environment from terminal/command line");
+        if(System.getProperty("env")==null){
+            LOGGER.warn("Environment is not provided from terminal, defaulting to QA");
+        }
         // this will help execute from terminal with different environment
         // using mvn test -Denv=qa or -Denv=dev or -Denv=uat
         env = System.getProperty("env", "qa"); //default to env qa if not provided in terminal
         env = env.toLowerCase().trim();
-        System.out.println("Running... tests on environment: " + env);
+        LOGGER.info("Environment selected is : {} ", env);
 
         switch (env) { // used java 14+ switch expression for better readability
             case "qa" -> path = "config/config.qa.properties";
@@ -40,6 +48,7 @@ public class ConfigManager {
             case "uat" -> path = "config/config.uat.properties";
             default -> path = "config/config.qa.properties";
         }
+        LOGGER.info("Loading config properties file from path : {} ", path);
 
         //Q. How do you ensure your code is platform independent and Readable? - Thread.separator
         // Using Thread.currentThread().getContextClassLoader() to load resource from classpath
@@ -48,14 +57,17 @@ public class ConfigManager {
         InputStream input = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream(path);
         if (input == null) {
+            LOGGER.error("Cannot find the File at path : {} ",path);
             throw new RuntimeException("Cannot find the File at path : " + path);
         }
 
         try {
             prop.load(input);
         } catch (FileNotFoundException e) {
+            LOGGER.error("File not found at path : {} ",path, e);
             e.printStackTrace();
         } catch (IOException e) {
+            LOGGER.error("IO Exception occurred while loading the properties file at path : {} ",path, e);
             e.printStackTrace();
         }
     }

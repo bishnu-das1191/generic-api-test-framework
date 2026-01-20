@@ -1,6 +1,8 @@
 package com.api.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,8 @@ public class JsonReaderUtil {
     // 4. POJO class to map the JSON data to Java Object
     // 5. Data Driven Test class.
 
+    private static final Logger LOGGER = LogManager.getLogger(JsonReaderUtil.class);
+
     public static <T> Iterator<T> loadJSON(String fileName, Class<T[]> clazz) {
 
         //loginAPITestData.json ----> src/test/resources/demodata/loginAPITestData.json
@@ -28,6 +32,8 @@ public class JsonReaderUtil {
         // we use Thread.currentThread() because when we run tests in parallel,
         // each thread will have its own context class loader
         // this will ensure that the correct class loader is used to load the resource
+
+        LOGGER.info("Loading JSON test data from file: {}", fileName);
         InputStream inputStream = Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream(fileName);
@@ -37,12 +43,14 @@ public class JsonReaderUtil {
         T[] classArray;
         List<T> list = null;
         try {
+            LOGGER.info("Converting JSON data to Java Object array of type: {}", clazz.getSimpleName());
             classArray = objMapper
                     .readValue(inputStream, clazz); // readValue() method converts JSON to Java Object
             System.out.println("json data in array form: ");
             System.out.println(Arrays.toString(classArray));
             list = List.of(classArray);
         } catch (IOException e) {
+            LOGGER.error("Error occurred while reading JSON file: {}", fileName, e);
             e.printStackTrace();
         }
 

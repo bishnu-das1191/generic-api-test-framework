@@ -4,6 +4,13 @@ package com.api.utils;
 import com.api.constant.Role;
 import com.api.request.model.UserCredentials;
 import io.restassured.http.ContentType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import static com.api.constant.Role.*;
 import static com.api.utils.EnvUtil.getEnvValue;
@@ -11,6 +18,13 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class AuthTokenProvider {
+
+    private static final Logger LOGGER = LogManager.getLogger(AuthTokenProvider.class);
+
+    // ConcurrentHashMap to store tokens for different roles
+    // we used ConcurrentHashMap to make it thread safe for parallel execution
+    // this will improve performance by reducing redundant token generation requests
+    private static Map<Role, String> tokenCache = new ConcurrentHashMap<>();
 
     private AuthTokenProvider() {
         // private constructor to prevent instantiation
@@ -22,6 +36,13 @@ public class AuthTokenProvider {
         // Make the request for the auth api and we want to extract
         // the token from the response
 
+        LOGGER.info("Checking if the token for role {} is present in the cache.", role);
+        if(tokenCache.containsKey(role)) {
+            LOGGER.info("Token found in cache for role {}. Returning cached token.", role);
+            return tokenCache.get(role);
+        }
+
+        LOGGER.info("Token not found in cache. Generating... new token for role {}.", role);
         UserCredentials userCredentials = null;
         if(role == ADMIN){
             userCredentials = new UserCredentials(
@@ -36,18 +57,25 @@ public class AuthTokenProvider {
                     getEnvValue("GUEST_API_USERNAME"),
                     getEnvValue("GUEST_API_PASSWORD"));
         }
+
+        String token = generateToken(userCredentials);
+        LOGGER.info("Generated new token for role {}. Caching the token.", role);
+        tokenCache.put(role, token);
+        return token;
+    }
+
+    private static String generateToken(UserCredentials userCredentials) {
         return given()
                 .baseUri(ConfigManager.getProperty("BASE_URI"))
-                .contentType(ContentType.JSON)
+                    .contentType(ContentType.JSON)
                 .body(userCredentials)
-                .when()
+                    .when()
                 .post("auth")
-                .then()
+                    .then()
                 .log().ifValidationFails()
-                .statusCode(200)
+                    .statusCode(200)
                 .body("token", notNullValue())
-                .extract()
+                    .extract()
                 .body().jsonPath().getString("token");
-
     }
 }
