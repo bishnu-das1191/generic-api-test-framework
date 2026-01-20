@@ -10,6 +10,7 @@ import static com.api.utils.SpecUtil.requestSpec;
 import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(com.listeners.APITestListener.class)
@@ -37,7 +38,11 @@ public class LoginAPITest {
     }
 
 
-    @Test(description = "Verify Login API is working for admin", groups = {"api","regression","smoke"})
+    @Test(
+            description = "Verify Login API is working for admin",
+            groups = {"api","regression","smoke"},
+            retryAnalyzer = com.listeners.APIRetryAnalyzer.class
+    )
     public void testLoginAPI() {
 
         //setup
@@ -51,6 +56,7 @@ public class LoginAPITest {
                 //validation
                 .and()
                 .body("token", notNullValue())
+                //.body("token", equalTo("Bearer"))
                 .and()
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
     }

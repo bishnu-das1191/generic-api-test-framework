@@ -1,5 +1,6 @@
 package com.listeners;
 
+import com.api.utils.AllureEnvironmentWriterUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -47,6 +48,7 @@ public class APITestListener implements ITestListener {
     public void onStart(ITestContext context) {
         LOGGER.info("===============================================================================================");
         LOGGER.info("========== TEST SUITE STARTED: {} ======================================", context.getName());
+        AllureEnvironmentWriterUtil.createEnvironmentPropertiesFile();
     }
 
     public void onFinish(ITestContext context) {

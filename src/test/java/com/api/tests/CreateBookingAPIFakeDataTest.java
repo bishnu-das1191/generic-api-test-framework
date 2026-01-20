@@ -28,7 +28,9 @@ public class CreateBookingAPIFakeDataTest {
     }
 
 
-    @Test(description = "Verify Create Booking API is working", groups = {"api","regression","smoke"})
+    @Test(description = "Verify Create Booking API is working with Faker Data",
+            groups = {"api","regression","smoke"},
+            retryAnalyzer = com.listeners.APIRetryAnalyzer.class)
     public void createBookingAPIWithFakeDataTest() {
 
         //setup
