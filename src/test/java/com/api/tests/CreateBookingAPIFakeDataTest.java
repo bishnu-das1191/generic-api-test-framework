@@ -4,6 +4,7 @@ import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
 import com.api.utils.FakerDataGenerator;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.constant.Role.ADMIN;
@@ -13,6 +14,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CreateBookingAPIFakeDataTest {
 
     // Rest Assured test code for login API would go here
@@ -27,7 +29,7 @@ public class CreateBookingAPIFakeDataTest {
 
 
     @Test(description = "Verify Create Booking API is working", groups = {"api","regression","smoke"})
-    public void createBookingAPITest() {
+    public void createBookingAPIWithFakeDataTest() {
 
         //setup
         given()

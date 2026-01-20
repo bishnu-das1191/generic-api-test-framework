@@ -4,6 +4,7 @@ import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
 import com.api.request.model.UserCredentials;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.constant.Role.ADMIN;
@@ -13,6 +14,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CreateBookingAPITest {
 
     // Rest Assured test code for login API would go here

@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.request.model.UserCredentials;
 import static com.api.utils.EnvUtil.*;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.requestSpec;
@@ -11,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.notNullValue;
 
+@Listeners(com.listeners.APITestListener.class)
 public class LoginAPITest {
 
     // Integrate Allure Report generation step by step in framework
