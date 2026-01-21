@@ -1,10 +1,10 @@
-package com.listeners;
+package com.api.retry;
 
 import com.api.utils.ConfigManager;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-public class APIRetryAnalyzer implements IRetryAnalyzer {
+public class RetryAnalyzer implements IRetryAnalyzer {
 
 	private int currentAttempt = 1;
 	private static final int MAX_NUMBER_OF_ATTEMPTS= Integer.parseInt(ConfigManager.getProperty("MAX_NUMBER_OF_ATTEMPTS"));

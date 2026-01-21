@@ -1,7 +1,7 @@
 package com.api.tests;
 
-import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
+import com.api.retry.RetryAnalyzer;
 import com.api.utils.FakerDataGenerator;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
@@ -36,7 +36,7 @@ public class CreateBookingAPIFakeDataTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify Create Booking API is working with Faker Data",
             groups = {"api","regression","smoke"},
-            retryAnalyzer = com.listeners.APIRetryAnalyzer.class)
+            retryAnalyzer = RetryAnalyzer.class)
     public void createBookingAPIWithFakeDataTest() {
 
         //setup

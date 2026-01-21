@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.request.model.UserCredentials;
 import static com.api.utils.EnvUtil.*;
 
+import com.api.retry.RetryAnalyzer;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -12,7 +13,6 @@ import static com.api.utils.SpecUtil.requestSpec;
 import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(com.listeners.APITestListener.class)
@@ -48,7 +48,7 @@ public class LoginAPITest {
     @Test(
             description = "Verify Login API is working for admin",
             groups = {"api","regression","smoke"},
-            retryAnalyzer = com.listeners.APIRetryAnalyzer.class
+            retryAnalyzer = RetryAnalyzer.class
     )
     public void testLoginAPI() {
 

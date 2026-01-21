@@ -2,7 +2,7 @@ package com.api.tests;
 
 import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
-import com.api.request.model.UserCredentials;
+import com.api.retry.RetryAnalyzer;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -12,7 +12,6 @@ import static com.api.constant.Role.ADMIN;
 import static com.api.utils.SpecUtil.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(com.listeners.APITestListener.class)
@@ -43,7 +42,7 @@ public class CreateBookingAPITest {
     @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify Create Booking API is working",
             groups = {"api","regression","smoke"},
-            retryAnalyzer = com.listeners.APIRetryAnalyzer.class)
+            retryAnalyzer = RetryAnalyzer.class)
     public void createBookingAPITest() {
 
         //setup
