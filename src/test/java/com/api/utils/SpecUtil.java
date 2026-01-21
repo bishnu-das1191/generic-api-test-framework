@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.constant.Role;
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -26,6 +27,7 @@ public class SpecUtil {
                 .log(LogDetail.METHOD)
                 .log(LogDetail.HEADERS)
                 .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return request;
 
@@ -45,6 +47,7 @@ public class SpecUtil {
                 .log(LogDetail.METHOD)
                 .log(LogDetail.HEADERS)
                 .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return request;
 
@@ -58,7 +61,8 @@ public class SpecUtil {
                 .expectContentType(ContentType.JSON)
                 .expectStatusCode(200)
                 .expectResponseTime(Matchers.lessThan(5000L)) // ideally should be less than 2000 ms
-                .log(LogDetail.ALL)
+                .log(LogDetail.STATUS)
+                .log(LogDetail.BODY)
                 .build();
         return responseSpecification;
 
@@ -71,7 +75,9 @@ public class SpecUtil {
                 .expectContentType(ContentType.JSON)
                 .expectStatusCode(statusCode)
                 .expectResponseTime(Matchers.lessThan(2000L))
-                .log(LogDetail.ALL)
+                //.log(LogDetail.ALL)
+                .log(LogDetail.STATUS)
+                .log(LogDetail.BODY)
                 .build();
         return responseSpecification;
 
@@ -84,7 +90,9 @@ public class SpecUtil {
         ResponseSpecification responseSpecification =  new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
                 .expectResponseTime(Matchers.lessThan(4000L))
-                .log(LogDetail.ALL)
+                //.log(LogDetail.ALL)
+                .log(LogDetail.STATUS)
+                .log(LogDetail.BODY)
                 .build();
         return responseSpecification;
 
@@ -124,6 +132,7 @@ public class SpecUtil {
                 .log(LogDetail.METHOD)
                 .log(LogDetail.HEADERS)
                 .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return requestSpecification;
     }
