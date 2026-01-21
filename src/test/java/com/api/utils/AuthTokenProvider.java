@@ -3,6 +3,7 @@ package com.api.utils;
 
 import com.api.constant.Role;
 import com.api.request.model.UserCredentials;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,7 @@ public class AuthTokenProvider {
 
     // Get token based on user role
     // Role based authentication
+    @Step("Getting Auth Token for Role: {role}")
     public static String getToken(Role role) {
         // Make the request for the auth api and we want to extract
         // the token from the response

@@ -3,6 +3,7 @@ package com.api.utils;
 import com.api.request.model.BookingDates;
 import com.api.request.model.CreateBooking;
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +26,7 @@ public class FakerDataGenerator {
     }
 
 
+    @Step("Generating fake CreateBooking payload data")
     public static CreateBooking generateFakeCreateBookingData() {
 
 
@@ -40,6 +42,7 @@ public class FakerDataGenerator {
     }
 
 
+    @Step("Generating list of fake CreateBooking payload data of count: {count}")
     public static Iterator<CreateBooking> generateFakeCreateBookingData(int count) {
 
         LOGGER.info("Generating list of fake CreateBooking payload data of count: {}", count);
@@ -64,6 +67,7 @@ public class FakerDataGenerator {
 
 
 
+    @Step("Generating fake BookingDates data")
     private static BookingDates generateFakeCustomerBookingData() {
         //Booking dates info can be added similarly
         LOGGER.info("Generating fake BookingDates data");

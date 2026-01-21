@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import com.api.constant.Role;
+import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -14,6 +15,7 @@ import static com.api.utils.ConfigManager.getProperty;
 public class SpecUtil {
 
     // GET Request Specification or // Delete Request Specification
+    @Step("Creating Request Specification without Payload")
     public static RequestSpecification requestSpec(){
 
         RequestSpecification request = new RequestSpecBuilder()
@@ -31,6 +33,7 @@ public class SpecUtil {
 
 
     //POST - PUT - PATH {BODY} Request Specification
+    @Step("Creating Request Specification with Payload")
     public static RequestSpecification requestSpec(Object payload){
 
         RequestSpecification request = new RequestSpecBuilder()
@@ -49,6 +52,7 @@ public class SpecUtil {
 
 
     // common Assertions for API Response Specification
+    @Step("Creating Common Response Specification for Status Code 200")
     public static ResponseSpecification responseSpec_OK(){
         ResponseSpecification responseSpecification =  new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
@@ -61,6 +65,7 @@ public class SpecUtil {
     }
 
     // Response Specification with JSON response type
+    @Step("Creating Response Specification with JSON Response Type for Status Code: {statusCode}")
     public static ResponseSpecification responseSpec_JSON(int statusCode){
         ResponseSpecification responseSpecification =  new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
@@ -74,6 +79,7 @@ public class SpecUtil {
 
 
     // Response Specification for TEXT response type
+    @Step("Creating Response Specification with TEXT Response Type for Status Code: {statusCode}")
     public static ResponseSpecification responseSpec_TEXT(int statusCode){
         ResponseSpecification responseSpecification =  new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
@@ -105,6 +111,7 @@ public class SpecUtil {
 
 
     // RequestSpecification with Authorization Header and Body
+    @Step("Creating Request Specification with Auth for Role: {role} and Payload")
     public static RequestSpecification requestSpecWithAuth(Role role, Object payload){
         RequestSpecification requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(getProperty("BASE_URI"))
@@ -120,8 +127,4 @@ public class SpecUtil {
                 .build();
         return requestSpecification;
     }
-
-
-
-
 }
