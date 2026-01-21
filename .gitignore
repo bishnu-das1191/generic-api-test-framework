@@ -2,6 +2,7 @@ target/
 .env
 logs/
 .allure
+steps.txt
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
