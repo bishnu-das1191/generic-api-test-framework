@@ -1,0 +1,42 @@
+<div>POST to https://restful-booker.herokuapp.com/booking</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;firstname&quot;: &quot;Bhushan&quot;,
+    &quot;lastname&quot;: &quot;Agarwal&quot;,
+    &quot;totalprice&quot;: 13439,
+    &quot;depositpaid&quot;: false,
+    &quot;bookingdates&quot;: {
+        &quot;checkin&quot;: &quot;2026-01-31&quot;,
+        &quot;checkout&quot;: &quot;2026-02-20&quot;
+    },
+    &quot;additionalneeds&quot;: &quot;Katsu Curry&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: a2f7400e4d73b76</div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://restful-booker.herokuapp.com/booking&#39; -H &#39;Authorization: a2f7400e4d73b76&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;firstname&quot;: &quot;Bhushan&quot;,
+    &quot;lastname&quot;: &quot;Agarwal&quot;,
+    &quot;totalprice&quot;: 13439,
+    &quot;depositpaid&quot;: false,
+    &quot;bookingdates&quot;: {
+        &quot;checkin&quot;: &quot;2026-01-31&quot;,
+        &quot;checkout&quot;: &quot;2026-02-20&quot;
+    },
+    &quot;additionalneeds&quot;: &quot;Katsu Curry&quot;
+}&#39;
+    </div>
+
