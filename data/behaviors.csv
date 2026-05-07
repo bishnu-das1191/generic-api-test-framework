@@ -1,4 +1,4 @@
 "Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
 "User Management Epic","Create Booking API Feature","Create Booking Story","0","0","1","0","0"
-"User Management Epic","Authentication/Login API Feature","Valid User Login Story","0","0","1","0","0"
 "User Management Epic","Create Booking API Feature","Create Booking Story with Faker Data","0","0","1","0","0"
+"User Management Epic","Authentication/Login API Feature","Valid User Login Story","0","0","1","0","0"
